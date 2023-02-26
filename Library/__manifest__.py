@@ -1,5 +1,5 @@
 {
-    'name': 'Library',
+    'name': 'Library 1',
     'version': '1.0',
     'summary': 'Summery',
     'description': 'Quản lý thư viện',
