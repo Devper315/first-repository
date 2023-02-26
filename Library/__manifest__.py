@@ -1,0 +1,25 @@
+{
+    'name': 'Library Management',
+    'version': '1.0',
+    'summary': 'Summery',
+    'description': 'Quản lý thư viện',
+    'category': 'Category',
+    'author': 'Developer315',
+    'website': 'devper315',
+    'depends': [],
+    'installable': True,
+    'application': True,
+    'sequence': 1,
+    'data': [
+        'views/LIBRARY_VIEW.xml',
+        'views/book_view.xml',
+        'views/borrower_view.xml',
+        'views/employee_view.xml',
+        'views/borrowing_view.xml',
+        'views/returning_view.xml',
+
+        'security/library_security.xml',
+        'security/borrowing_record_security.xml',
+        'security/ir.model.access.csv',
+    ],
+}

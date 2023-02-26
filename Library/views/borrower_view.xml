@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="borrower_view_form" model="ir.ui.view">
+            <field name="name">borrower_view_form</field>
+            <field name="model">borrower</field>
+            <field name="arch" type="xml">
+                <form string="borrower_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="gender"/>
+                                <field name="email"/>
+                            </group>
+                            <group>
+                                <field name="date_of_birth"/>
+                                <field name="phone"/>
+                            </group>
+                            <notebook>
+                                <page string="Các sách đã mượn">
+                                    <field name="borrowing_ids">
+                                        <tree>
+                                            <field name="book_ids" widget="many2many_tags"/>
+                                            <field name="borrowing_date"/>
+                                        </tree>
+                                    </field>>
+
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="borrower_action_1" model="ir.actions.act_window">
+            <field name="name">Khách hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">borrower</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="borrower_menu" name="Khách hàng" parent="library_menu_root" sequence="2"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="borrower_menu_1" name="Danh sách khách hàng"
+                  parent="borrower_menu" action="borrower_action_1" sequence="1"/>
+
+    </data>
+</odoo>

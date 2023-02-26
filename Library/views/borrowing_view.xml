@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="borrowing_view_form" model="ir.ui.view">
+            <field name="name">borrowing_view_form</field>
+            <field name="model">borrowing</field>
+            <field name="arch" type="xml">
+                <form string="_form">
+                    <sheet>
+                        <group>
+                            <field name="book_ids">
+                                <tree>
+                                    <field name="name" string="Tên sách"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <field name="employee_id" widget="many2many"/>
+                                <field name="borrowing_date"/>
+                                <field name="on_demand_returning_date"/>
+                            </group>
+                            <group>
+                                <field name="borrower_id"/>
+                                <field name="state"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="borrowing_view_tree" model="ir.ui.view">
+            <field name="name">borrowing_view_tree</field>
+            <field name="model">borrowing</field>
+            <field name="arch" type="xml">
+                <tree string="borrowing_tree">
+                    <field name="id" string="Mã đơn"/>
+                    <field name="book_ids" widget="many2many_tags"/>
+                    <field name="borrower_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="borrowing_action_1" model="ir.actions.act_window">
+            <field name="name">Giao dịch mượn sách</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">borrowing</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="borrowing_menu" name="Đơn mượn sách" parent="library_menu_root" sequence="3"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="borrowing_menu_1" name="Danh sách đơn"
+                  parent="borrowing_menu" action="borrowing_action_1" sequence="1"/>
+    </data>
+</odoo>

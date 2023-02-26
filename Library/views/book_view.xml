@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="book_view_form" model="ir.ui.view">
+            <field name="name">book_view_form</field>
+            <field name="model">book</field>
+            <field name="arch" type="xml">
+                <form string="book_form">
+                    <sheet>
+                        <group>
+                            <field name="image_1920" widget="image" class="oe_avatar" options='{"preview_image": "image_128"}'/>
+                            <group>
+                                <h2 style="color: red">
+                                    <field name="name" placeholder="Tên sách"/>
+                                </h2>
+                                <field name="type_ids" widget="many2many_tags"/>
+                                <field name="author_ids" widget="many2many_tags"/>
+                                <field name="publisher_id" options="{'no_create': True, 'no_open': True}"/>
+
+                            </group>
+
+                            <group>
+                               <div class = "box">
+                                   <style>
+                                       .box{
+                                            width: 50px;
+                                            height: 35px;
+                                            background-color: white;
+                                            content: "Đây là box 1";
+                                       }
+                                   </style>
+                                </div>
+                                <field name="total_quantity"/>
+                                <field name="number_of_borrower"/>
+                                <field name="rest_quantity"/>
+                                <field name="first_import_date" attrs="{'required': [('total_quantity', '!=', 0)]}"/>
+                            </group>
+                            <notebook>
+                                <page string="Danh sách người mượn">
+                                    <field name="borrowing_ids">
+                                        <tree>
+                                            <field name="borrower_id"/>
+                                            <field name="borrowing_date"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="book_view_tree" model="ir.ui.view">
+            <field name="name">book_view_tree</field>
+            <field name="model">book</field>
+            <field name="arch" type="xml">
+                <tree string="book_tree">
+                    <field name="name"/>
+                    <field name="type_ids" widget="many2many_tags"/>
+                    <field name="author_ids" widget="many2many_tags"/>
+                    <field name="publisher_id"/>
+                    <field name="total_quantity"/>
+<!--                    <field name="rest_quantity"/>-->
+<!--                    <field name="number_of_borrower"/>-->
+                    <field name="first_import_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="book_action_1" model="ir.actions.act_window">
+            <field name="name">Danh sách</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">book</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="Book_menu" name="Sách" parent="Library.library_menu_root" sequence="1"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="Book_menu_1" name="Danh sách các đầu sách"
+                  parent="Book_menu" action="book_action_1" sequence="1"/>
+    </data>
+</odoo>

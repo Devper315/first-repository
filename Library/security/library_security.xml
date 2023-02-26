@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="library_access_rights_category" model="ir.module.category">
+            <field name="name">Library Access Rights Category</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+        <record id="library_employee_group" model="res.groups">
+            <field name="name">Library Employee Group</field>
+            <field name="category_id" ref="library_access_rights_category"/>
+        </record>
+
+        <record id="library_manager_group" model="res.groups">
+            <field name="name">Library Manager Group</field>
+            <field name="category_id" ref="library_access_rights_category"/>
+            <field name="implied_ids" eval="[(4, ref('Library.library_employee_group'))]"/>
+        </record>
+    </data>
+</odoo>
+
