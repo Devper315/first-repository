@@ -1,5 +1,5 @@
 {
-    'name': 'Library Management',
+    'name': 'Library,
     'version': '1.0',
     'summary': 'Summery',
     'description': 'Quản lý thư viện',
